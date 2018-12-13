@@ -26,9 +26,10 @@ class Board extends Component {
         const cardSet = response.data.map((card) => {
           console.log(card)
           const newCard = {
-            ...card.card
+            ...card.card,
           };
           console.log(newCard)
+          newCard.emoji === null ? newCard.emoji = "heart_eyes" : newCard.emoji
           return newCard;
         })
 
@@ -61,6 +62,7 @@ class Board extends Component {
     return (
       <div className="board">
         {allCards}
+        <NewCardForm />
       </div>
     )
   }
