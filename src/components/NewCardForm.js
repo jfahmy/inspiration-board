@@ -56,13 +56,16 @@ class NewCardForm extends Component {
       <h1 className="new-card-form__header"> Create new card </h1>
           <form onSubmit={this.onSubmit} name="new-card-form__form" id="new-card-form" className="new-card-form">
             <div>
-              <label className=".new-card-form__form-label" htmlFor="text">Message</label>
-              <textarea className="new-card-form__form-textarea" name="text" onChange={this.onFormChange} value={this.state.text}></textarea>
+              <label className=".new-card-form__form-label" htmlFor="text">Message
+              <textarea className="new-card-form__form-textarea" name="text" onChange={this.onFormChange}
+                value={this.state.text}></textarea>
+              </label>
 
             </div>
             <div>
               <label className=".new-card-form__form-label" htmlFor="emoji">Emoji
-                <select className= "new-card-form__form-select" name="emoji" value={this.state.emoji} onChange={this.onFormChange}>
+                <select className= "new-card-form__form-select" name="emoji" value={this.state.emoji}
+                  onChange={this.onFormChange}>
                   {emojiDropDown}
                 </select>
               </label>
@@ -76,6 +79,12 @@ class NewCardForm extends Component {
   }
 
 }
+
+NewCardForm.propTypes = {
+  emoji: PropTypes.string,
+  text: PropTypes.string,
+  addCardCallback: PropTypes.function
+};
 
 
 

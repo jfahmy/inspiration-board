@@ -13,7 +13,7 @@ class Card extends Component {
   }
 
   render() {
-    console.log(this.props.text)
+    console.log(this.props.emoji)
     return (
       <div className="card">
         <div className="card__content">
@@ -26,7 +26,8 @@ class Card extends Component {
 }
 
 Card.propTypes = {
-  text: PropTypes.string
+  text: PropTypes.string,
+  emoji: PropTypes.string
 };
 
 export default Card;

@@ -46,6 +46,29 @@ class Board extends Component {
       });
   }
 
+  addCard = (newCard) => {
+    const apiPayload = {
+      ...newCard
+    };
+    axios.post(URL, apiPayload)
+      .then((response) => {
+        const newCard = response.data.card;
+        const list = this.state.cards;
+
+        list.push(newCard);
+
+        this.setState({
+          cards: list
+        })
+        console.log(list)
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: `Failure ${error.message}`,
+        })
+      });
+  }
+
   render() {
     console.log(this.state.cards)
     const allCards = this.state.cards
@@ -62,7 +85,8 @@ class Board extends Component {
     return (
       <div className="board">
         {allCards}
-        <NewCardForm />
+        <NewCardForm
+          addCardCallback={this.addCard}/>
       </div>
     )
   }
