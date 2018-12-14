@@ -69,6 +69,34 @@ class Board extends Component {
       });
   }
 
+  deleteCard = (cardId) => {
+    const deleteCall = 'https://inspiration-board.herokuapp.com/cards/' + cardId
+    axios.delete(deleteCall)
+      .then((response) => {
+        console.log(response.data)
+        let deleteIndex = -1
+        const allCards = [...this.state.cards]
+
+        allCards.forEach((card, index) => {
+           if (cardId === card.id) {
+             deleteIndex = index;
+           }
+        });
+
+        allCards.splice(deleteIndex, 1)
+
+        this.setState({
+          cards: allCards
+        })
+   })
+      .catch((error) => {
+        this.setState({
+          errorMessage: `Failure ${error.message}`
+        })
+      })
+
+  }
+
   render() {
     console.log(this.state.cards)
     const allCards = this.state.cards
@@ -76,9 +104,10 @@ class Board extends Component {
         return (
           <Card
             key={i}
-            id={i}
+            id={card.id}
             text={card.text}
             emoji = {card.emoji}
+            deleteCardCallback={this.deleteCard}
           />
         )
       })

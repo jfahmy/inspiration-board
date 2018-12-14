@@ -12,22 +12,29 @@ class Card extends Component {
 
   }
 
+  onDeleteClick = () => {
+    console.log(this.props)
+    this.props.deleteCardCallback(this.props.id)
+  }
+
   render() {
-    console.log(this.props.emoji)
     return (
       <div className="card">
         <div className="card__content">
-        <h2 className="card__content-text"> {this.props.text} </h2>
-        <p className="card__content-emoji">{emoji.getUnicode(this.props.emoji)}</p>
+          <h2 className="card__content-text"> {this.props.text} </h2>
+          <p className="card__content-emoji">{emoji.getUnicode(this.props.emoji)}</p>
         </div>
+        <div onClick={this.onDeleteClick} className="card__delete"> X </div>
       </div>
     )
   }
 }
 
 Card.propTypes = {
+  id: PropTypes.string,
   text: PropTypes.string,
-  emoji: PropTypes.string
+  emoji: PropTypes.string,
+  deleteCardCallback: PropTypes.function
 };
 
 export default Card;
